@@ -1,6 +1,8 @@
 import 'package:ecocart/ui/common/color_theme.dart';
-import 'package:ecocart/ui/home_screen.dart';
+import 'package:ecocart/ui/controllers/main_binding.dart';
+import 'package:ecocart/ui/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,13 +18,20 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider.value(value: ColorSystem()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'EcoCart',
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: const HomeScreen(),
+        initialRoute: "/",
+        getPages: [
+          GetPage(
+            name: "/",
+            page: () => const MainScreen(),
+            binding: MainBinding(),
+          ),
+        ],
       ),
     );
   }
